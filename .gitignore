@@ -1,0 +1,19 @@
+# Local environment
+.venv/
+
+# Runtime data and temporary uploads
+__pycache__/
+*.py[cod]
+temp_speech_files/*
+presentation_grading.db
+server.stdout.log
+server.stderr.log
+
+# Local model artifacts and generated calibration data
+models/*.joblib
+models/*.task
+data/*.csv
+
+# User-local progress and feedback
+assessment_feedback.json
+speaker_progress.json
