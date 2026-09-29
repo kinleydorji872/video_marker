@@ -101,7 +101,7 @@ def get_progress(speaker:str=""): return {"speaker":speaker or "All speakers","r
 def feedback(req:FeedbackRequest): return {"status":"saved","feedback":save_feedback(req.model_dump())}
 
 @app.get("/health")
-def health(): return {"status":"ready","local_only":True,"transcription_engine":"faster-whisper" if speech._get_model() is not None else "unavailable until installed/model cached","version":"2.0.0"}
+def health(): return {"status":"ready","local_only":True,"transcription_engine":"faster-whisper local model" if os.getenv("WHISPER_MODEL_PATH") else "disabled until WHISPER_MODEL_PATH is set","version":"2.0.0"}
 
 if __name__=="__main__":
     import uvicorn
