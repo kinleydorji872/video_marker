@@ -11,7 +11,10 @@ class SpeakingSkillsAnalyzer:
     def _get_model(self):
         if WhisperModel is None:return None
         if self._model is None:
-            self._model=WhisperModel(os.getenv("WHISPER_MODEL_PATH") or self.model_name,device=os.getenv("WHISPER_DEVICE","cpu"),compute_type=os.getenv("WHISPER_COMPUTE_TYPE","int8"))
+            model_dir=os.getenv("WHISPER_MODEL_PATH","").strip()
+            if not model_dir:
+                return None
+            self._model=WhisperModel(model_dir,device=os.getenv("WHISPER_DEVICE","cpu"),compute_type=os.getenv("WHISPER_COMPUTE_TYPE","int8"))
         return self._model
     @staticmethod
     def _pitch(y,sr):
